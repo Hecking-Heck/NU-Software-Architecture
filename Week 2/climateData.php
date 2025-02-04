@@ -6,7 +6,7 @@
 * Monthly, seasonal and annual mean air temperature for UK
 * Areal series, starting in 1884
 * Last updated 01-Jan-2025 10:44
-﻿*
+*
 * @source: https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmean/date/UK.txt
 */
 function climateData() {  
@@ -155,26 +155,8 @@ function climateData() {
     return $year;
 }
 
- if (isset($_GET['search']) ) {
-    $search = $_GET['search'];
- } else {
-    $search = "";
- }
+header('Content-Type: application/json');
  
-$sqlQuery = "SELECT * FROM actor WHERE first_name LIKE :first_name OR last_name LIKE :last_name";
+$data = climateData();
  
-try {
-    // $dbConnection = getConnection();
-    // $result = $dbConnection->prepare($sqlQuery);
- 
-    // $param['first_name'] = "%" . $search . "%";
-    // $param['last_name'] = "%" . $search . "%";
- 
-    // $result->execute($param);
-    // $data = $result->fetchAll(PDO::FETCH_ASSOC);
-    $data = climateData()
- 
-} catch( PDOException $e ) {
-    $data['error'] = $e->getMessage();
-    http_response_code(500);
-}
+echo json_encode($data);
