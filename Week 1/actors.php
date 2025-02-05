@@ -7,9 +7,6 @@ $sqlQuery = "SELECT * FROM actor WHERE first_name LIKE :search OR last_name LIKE
 try {
     $dbConnection = getConnection();
     $result = $dbConnection->prepare($sqlQuery);
- 
-    // Use $_GET to access a value in the URL  
-    $param['search'] = "%" . $_GET['search'] . "%";
 
     // Use an if statement together with isset() to see if 
     // a value has been set in the URL. This code creates 
@@ -19,6 +16,9 @@ try {
     } else {
         $title = "";
     }
+
+    // Use $_GET to access a value in the URL  
+    $param['search'] = "%" . $title . "%";
  
     $result->execute($param);
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
