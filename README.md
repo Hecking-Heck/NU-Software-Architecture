@@ -10,5 +10,6 @@ Week 4
 
 Week 5
 
-Week 6
+__Week 6__
+
 Reading Week
